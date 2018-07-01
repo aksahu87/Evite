@@ -1,0 +1,92 @@
+{% extends 'event/base.html' %}
+{% block content %}
+<div class="container">
+  <br />
+  <div class="row">
+    <div class="col-lg-12">
+      <h3 class="e1">Event Details</h3>
+      {% if request.user.is_authenticated %}
+        <h5>Welcome, {{ request.user.username }}</h5>
+        <a href="{% url 'logout' %}"><button class="btn btn-danger pull-right" style="margin-left:10px">logout</button></a>
+        <a href="{% url 'event' %}"><button class="btn btn-primary pull-right" style="margin-left:10px;">Go Back</button></a>
+        <a href="{% url 'sendr' eventid %}"><button class="btn btn-primary pull-right" style="margin-left:10px;">
+            <span class="glyphicon glyphicon-envelope"></span>   Send Review Form</button></a>
+        <a href="{% url 'send' eventid %}"><button class="btn btn-primary pull-right" style="margin-left:10px;">
+            <span class="glyphicon glyphicon-envelope"></span>   Send Invitation</button></a>
+        <a href="{% url 'delete' eventid %}"><button class="btn btn-primary pull-right" style="margin-left:10px;" >Delete Event</button></a>
+        <a href="{% url 'edit' eventid %}"><button class="btn btn-primary pull-right" style="margin-left:10px;" >Update Event</button></a>
+      {% endif %}
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+  	<div class="col-md-6">
+  			<div class="panel panel-default">
+  		<div class="panel-heading">
+    		<h3 class="panel-title" style="text-align:center">{{ key.4 }} Details</h3>
+    	</div>	
+  		<div class="panel-body">
+    		Date		: {{ key.1 }}
+    	</div>
+    	<div class="panel-body">	
+    		Time        : {{ key.2 }}
+    	</div>	
+    	<div class="panel-body">	
+    		Description : {{ key.3 }}
+    	</div>	
+    	<div class="panel-body">	
+    		Title       : {{ key.4 }}
+    	</div>	
+    	<div class="panel-body">	
+    		Location    : {{ key.9 }}
+  		</div>
+	</div> 
+  	</div>
+  	<div class="col-md-6">
+  			<div class="panel panel-default">
+  		<div class="panel-heading">
+    		<h3 class="panel-title" style="text-align:center">Guest Number Details</h3>
+    	</div>	
+  		<div class="panel-body">
+    		Max Invites		: {{ key.5 }}
+    	</div>
+    	<div class="panel-body">	
+    		Current Head Count        : {{ headcount }}
+    	</div>	
+    	<div class="panel-body">	
+    		Maximum Guest : {{ key.7 }}
+    	</div>	
+    	<div class="panel-body">	
+    		No of Invitees Yet to RSVP  : {{ nrsvp }}
+    	</div>
+    	<div class="panel-body">	
+    		Rating By Guests       : {{ rating }}
+    	</div>	
+	</div> 
+  	</div>
+  </div>
+  <hr />
+<div class="row">
+  	<div class="col-md-6" style="margin-left:300px">
+  	    <div class="panel panel-default">
+  	        <div class="panel-heading">
+    			<h3 class="panel-title" style="text-align:center">List of Guests</h3>
+    		</div>
+    		<table class="table">
+    		  <tr>
+    			<th>Email Ids</th>
+    			<th>RSVP Status</th> 
+  			  </tr><hr />
+  			
+    		  {% for id in email %}
+    		  <tr>
+    		     <th style="font-weight:350">{{ id.0 }}</th>
+                 <th style="font-weight:350">{{ id.1 }}</th>
+              </tr>
+		      {% endfor %}
+		    </table>
+		    </div>
+  	    </div>
+  	</div>
+</div>
+{% endblock %}

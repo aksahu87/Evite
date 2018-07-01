@@ -1,0 +1,11 @@
+.calendar_entry {
+  background-color: #eee;
+}
+body, html {
+  width: 100%;
+  display: grid;
+}
+.j{
+.btn-space {
+    margin-right: 5px;
+}
